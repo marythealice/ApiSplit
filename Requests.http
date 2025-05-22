@@ -2,8 +2,8 @@ POST http://localhost:5125/perfumes
 Content-Type: application/json
 
 {
-    "nome": "Greenwhich Village",
-    "volumetria": 100
+    "name": "Greenwich Village",
+    "volume": 100
 }
 
 ###
@@ -12,16 +12,16 @@ GET http://localhost:5125/perfumes/1
 
 ###
 
-POST http://localhost:5125/peca
+POST http://localhost:5125/bottles
 Content-Type: application/json
 
 {
-    "volumetria": 11,
-    "valorporml": 17.50,
-    "tipo": "Encomenda",
+    "volume": 11,
+    "priceperml": 17.50,
+    "type": "Encomenda",
     "perfumeid": 1
 
 }
 
 ###
-GET http://localhost:5125/peca/1
+GET http://localhost:5125/bottles/2

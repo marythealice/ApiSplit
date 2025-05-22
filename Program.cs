@@ -45,7 +45,7 @@ app.MapPost("/bottles", async (BottleRequest request, PerfumeServices perfumeSer
     if (perfume is null)
         return Results.NotFound();
 
-    var bottle = bottleServices.CreateBottle(request);
+    var bottle = await bottleServices.CreateBottle(request);
     return Results.Ok(bottle);
 });
 
