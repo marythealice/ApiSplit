@@ -18,7 +18,8 @@ public class BottleServices
 
     public async Task<Bottle?> BottleExists(uint id)
     {
-        return await _db.Bottles.FindAsync(id);
+        return await _db.Bottles.Include(x => x.Perfume)
+        .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<List<Bottle>> GetAllAsync()

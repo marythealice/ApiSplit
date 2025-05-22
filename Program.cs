@@ -39,7 +39,7 @@ app.MapGet("/perfumes/", async (PerfumeServices perfumeServices) =>
     return Results.Ok(perfumes);
 });
 
-app.MapPost("/peca", async (BottleRequest request, PerfumeServices perfumeServices, BottleServices bottleServices) =>
+app.MapPost("/bottles", async (BottleRequest request, PerfumeServices perfumeServices, BottleServices bottleServices) =>
 {
     var perfume = await perfumeServices.GetPerfume(request.PerfumeId);
     if (perfume is null)
@@ -49,7 +49,7 @@ app.MapPost("/peca", async (BottleRequest request, PerfumeServices perfumeServic
     return Results.Ok(bottle);
 });
 
-app.MapGet("/peca/{id}", async (uint id, BottleServices bottleServices) =>
+app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
 {
     var bottle = await bottleServices.BottleExists(id);
     if (bottle is null)
