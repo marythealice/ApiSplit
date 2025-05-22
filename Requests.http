@@ -1,0 +1,27 @@
+POST http://localhost:5125/perfumes
+Content-Type: application/json
+
+{
+    "nome": "Greenwhich Village",
+    "volumetria": 100
+}
+
+###
+
+GET http://localhost:5125/perfumes/1
+
+###
+
+POST http://localhost:5125/peca
+Content-Type: application/json
+
+{
+    "volumetria": 11,
+    "valorporml": 17.50,
+    "tipo": "Encomenda",
+    "perfumeid": 1
+
+}
+
+###
+GET http://localhost:5125/peca/1

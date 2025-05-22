@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ZnkOIIzshZxsTsBJgFPq4WDBZcX0ajOHwzadZCTyL38=",
+  "Source": "ApiSplit",
+  "BasePath": "_content/ApiSplit",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
