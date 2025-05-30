@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<PerfumeServices>();
 builder.Services.AddScoped<BottleServices>();
 builder.Services.AddScoped<UserServices>();
+builder.Services.AddScoped<UserRequestValidator>();
 
 var app = builder.Build();
 
@@ -54,11 +56,16 @@ app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
     var bottle = await bottleServices.BottleExists(id);
     if (bottle is null)
         return Results.NotFound();
+
     return Results.Ok(bottle);
 });
 
-app.MapPost("/users", async (UserServices userServices, UserRequest request) =>
+app.MapPost("/users", async (UserServices userServices, UserRequest request, UserRequestValidator userReqValidator) =>
 {
+    var result = userReqValidator.Validate(request);
+    if (!result.IsValid)
+        return Results.ValidationProblem(result.ToDictionary());
+
     var user = await userServices.CreateUser(request);
     return Results.Ok(user);
 });
