@@ -7,4 +7,5 @@ public class ApiDb : DbContext
 
     public DbSet<Perfume> Perfumes => Set<Perfume>();
     public DbSet<Bottle> Bottles => Set<Bottle>();
+    public DbSet<User> Users => Set<User>();
 }

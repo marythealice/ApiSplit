@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 
 
@@ -7,6 +6,7 @@ builder.Services.AddDbContext<ApiDb>(opt => opt.UseNpgsql(builder.Configuration.
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<PerfumeServices>();
 builder.Services.AddScoped<BottleServices>();
+builder.Services.AddScoped<UserServices>();
 
 var app = builder.Build();
 
@@ -57,5 +57,13 @@ app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
     return Results.Ok(bottle);
 });
 
+app.MapPost("/users", async (UserServices userServices, UserRequest request) =>
+{
+    var user = await userServices.CreateUser(request);
+    return Results.Ok(user);
+});
 
 app.Run();
+
+
+

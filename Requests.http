@@ -25,3 +25,21 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5125/bottles/2
+
+###
+POST http://localhost:5125/users
+Content-Type: application/json
+
+{
+    "name":"Maria Alice",
+    "address":{
+    "recipientname": "Maria Alice",
+    "streetname": "Candida Lima de Barros",
+    "streetnumber": "537",
+    "apartmentnumber": "",
+    "state": "Mato Grosso do Sul",
+    "city": "Campo Grande",
+    "zipcode": "79041390"
+    }
+
+}

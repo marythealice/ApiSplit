@@ -3,16 +3,17 @@ using Microsoft.EntityFrameworkCore;
 [Owned]
 public class Address
 {
-    public string RecipientName { get; private set; }
-    public string StreetName { get; private set; }
-    public string StreetNumber { get; private set; }
+    public string RecipientName { get; set; }
+    public string StreetName { get; set; }
+    public string StreetNumber { get; set; }
     public string ApartmentNumber { get; set; }
-    public string State { get; private set; }
-    public string City { get; private set; }
-    public string ZipCode { get; private set; }
+    public string State { get; set; }
+    public string City { get; set; }
+    public string ZipCode { get; set; }
 
     public Address(string recipientName, string streetName, string streetNumber, string state, string city, string zipCode, string apartmentNumber = "")
     {
+
         RecipientName = recipientName;
         StreetName = streetName;
         StreetNumber = streetNumber;
@@ -26,7 +27,7 @@ public class Address
     public override string ToString()
     {
         string apartmentNumberStr = !string.IsNullOrEmpty(ApartmentNumber) ? " / " + ApartmentNumber : "";
-        return string.Format("{0} {1}{2} {3:00-000} {4}", StreetName, StreetNumber, apartmentNumberStr, int.Parse(ZipCode), City);
+        return string.Format("{0} {1}{2} {3:00000-000} {4}", StreetName, StreetNumber, apartmentNumberStr, int.Parse(ZipCode), City);
     }
 
 
