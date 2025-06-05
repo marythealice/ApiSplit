@@ -1,4 +1,4 @@
-using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 public class UserServices
 {
     private readonly ApiDb _db;
@@ -23,5 +23,10 @@ public class UserServices
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
         return user;
+    }
+
+    public async Task<List<User>> GetAllUsers()
+    {
+        return await _db.Users.ToListAsync();
     }
 }

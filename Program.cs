@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using FluentValidation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +33,7 @@ app.MapGet("/perfumes/{id}", async (uint id, PerfumeServices perfumeServices) =>
 
 app.MapGet("/perfumes/", async (PerfumeServices perfumeServices) =>
 {
-    var perfumes = await perfumeServices.GetAllAsync();
+    var perfumes = await perfumeServices.GetAllPerfumes();
     if (perfumes is null)
         return Results.NotFound("There are no perfumes available");
 
@@ -60,6 +59,15 @@ app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
     return Results.Ok(bottle);
 });
 
+app.MapGet("/bottles/", async (BottleServices bottleServices) =>
+{
+    var bottles = await bottleServices.GetAllBottles();
+    if (bottles is null)
+        return Results.NotFound("There are no bottles available");
+
+    return Results.Ok(bottles);
+});
+
 app.MapPost("/users", async (UserServices userServices, UserRequest request, UserRequestValidator userReqValidator) =>
 {
     var result = userReqValidator.Validate(request);
@@ -68,6 +76,15 @@ app.MapPost("/users", async (UserServices userServices, UserRequest request, Use
 
     var user = await userServices.CreateUser(request);
     return Results.Ok(user);
+});
+
+app.MapGet("/users/", async (UserServices userServices) =>
+{
+    var users = await userServices.GetAllUsers();
+    if (users is null)
+        return Results.NotFound("No user was found. ");
+
+    return Results.Ok(users);
 });
 
 app.Run();
