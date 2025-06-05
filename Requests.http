@@ -27,14 +27,17 @@ Content-Type: application/json
 GET http://localhost:5125/bottles/2
 
 ###
+GET http://localhost:5125/bottles/
+
+###
 POST http://localhost:5125/users
 Content-Type: application/json
 
 {
-    "name":"Maria Alice",
+    "name":"",
     "address":{
     "recipientname": "Maria Alice",
-    "streetname": "Candida Lima de Barros",
+    "streetname": "",
     "streetnumber": "537",
     "apartmentnumber": "",
     "state": "Mato Grosso do Sul",
@@ -43,3 +46,6 @@ Content-Type: application/json
     }
 
 }
+
+###
+GET http://localhost:5125/users/

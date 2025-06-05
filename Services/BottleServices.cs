@@ -23,7 +23,7 @@ public class BottleServices
         .FirstOrDefaultAsync(b => b.Id == id);
     }
 
-    public async Task<List<Bottle>> GetAllAsync()
+    public async Task<List<Bottle>> GetAllBottles()
     {
         return await _db.Bottles.ToListAsync();
     }

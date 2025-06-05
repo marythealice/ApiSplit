@@ -22,7 +22,7 @@ public class PerfumeServices
         return await _db.Perfumes.FindAsync(id);
     }
 
-    public async Task<List<Perfume>> GetAllAsync()
+    public async Task<List<Perfume>> GetAllPerfumes()
     {
         return await _db.Perfumes.ToListAsync();
     }
