@@ -12,6 +12,12 @@ GET http://localhost:5125/perfumes/1
 
 ###
 
+GET http://localhost:5125/perfumes/
+
+###
+DELETE  http://localhost:5125/perfumes/2
+
+###
 POST http://localhost:5125/bottles
 Content-Type: application/json
 
@@ -46,6 +52,9 @@ Content-Type: application/json
     }
 
 }
+
+###
+GET http://localhost:5125/users/6
 
 ###
 GET http://localhost:5125/users/

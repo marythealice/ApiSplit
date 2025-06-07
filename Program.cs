@@ -25,7 +25,7 @@ app.MapGet("/perfumes/{id}", async (uint id, PerfumeServices perfumeServices) =>
 {
     var perfume = await perfumeServices.GetPerfume(id);
     if (perfume is null)
-        return Results.NotFound();
+        return Results.NotFound("Perfume was not found");
 
     return Results.Ok(perfume);
 });
@@ -38,6 +38,16 @@ app.MapGet("/perfumes/", async (PerfumeServices perfumeServices) =>
         return Results.NotFound("There are no perfumes available");
 
     return Results.Ok(perfumes);
+});
+
+app.MapDelete("/perfumes/{id}", async (PerfumeServices perfumeServices, uint id) =>
+{
+    var perfume = await perfumeServices.GetPerfume(id);
+    if (perfume is null)
+        return Results.NotFound("Perfume was not found");
+
+    await perfumeServices.RemovePerfume(perfume);
+    return Results.Ok(perfume);
 });
 
 app.MapPost("/bottles", async (BottleRequest request, PerfumeServices perfumeServices, BottleServices bottleServices) =>
@@ -75,6 +85,15 @@ app.MapPost("/users", async (UserServices userServices, UserRequest request, Use
         return Results.ValidationProblem(result.ToDictionary());
 
     var user = await userServices.CreateUser(request);
+    return Results.Ok(user);
+});
+
+app.MapGet("/users/{id}", async (UserServices userServices, uint id) =>
+{
+    var user = await userServices.GetUser(id);
+    if (user is null)
+        return Results.NotFound("No such user was found. ");
+
     return Results.Ok(user);
 });
 

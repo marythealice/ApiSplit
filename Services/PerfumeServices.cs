@@ -26,4 +26,11 @@ public class PerfumeServices
     {
         return await _db.Perfumes.ToListAsync();
     }
+
+    public async Task<int> RemovePerfume(Perfume perfume)
+    {
+        _db.Perfumes.Remove(perfume);
+        return await _db.SaveChangesAsync();
+
+    }
 }

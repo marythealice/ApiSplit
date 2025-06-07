@@ -1,6 +1,6 @@
 public class User
 {
-    public int Id { get; private set; }
+    public uint Id { get; private set; }
     public string Name { get; private set; }
     public Address Address { get; private set; }
 

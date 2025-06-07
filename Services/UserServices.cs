@@ -25,6 +25,11 @@ public class UserServices
         return user;
     }
 
+    public async Task<User?> GetUser(uint id)
+    {
+        return await _db.Users.FindAsync(id);
+    }
+
     public async Task<List<User>> GetAllUsers()
     {
         return await _db.Users.ToListAsync();
