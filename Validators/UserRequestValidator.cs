@@ -5,6 +5,7 @@ public class UserRequestValidator : AbstractValidator<UserRequest>
     public UserRequestValidator()
     {
         RuleFor(u => u.Name).NotEmpty();
+        RuleFor(u => u.Email).NotEmpty().EmailAddress();
         RuleFor(u => u.Address.RecipientName).NotEmpty();
         RuleFor(u => u.Address.StreetName).NotEmpty();
         RuleFor(u => u.Address.StreetNumber).NotEmpty();

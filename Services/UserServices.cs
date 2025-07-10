@@ -19,7 +19,7 @@ public class UserServices
         addressReq.State,
         addressReq.City,
         addressReq.ZipCode);
-        var user = new User(request.Name, address);
+        var user = new User(request.Name, address, request.Email);
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
         return user;

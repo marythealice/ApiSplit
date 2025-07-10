@@ -1,10 +1,10 @@
 public class BottleRequest
 {
-    public uint Volume { get; set; }
+    public required uint Volume { get; set; }
 
-    public decimal PricePerMl { get; set; }
+    public required decimal PricePerMl { get; set; }
 
     public required string Type { get; set; }
 
-    public uint PerfumeId { get; set; }
+    public required uint PerfumeId { get; set; }
 }

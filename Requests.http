@@ -40,16 +40,17 @@ POST http://localhost:5125/users
 Content-Type: application/json
 
 {
-    "name":"",
+    "name":"Maria Alice",
     "address":{
     "recipientname": "Maria Alice",
-    "streetname": "",
+    "streetname": "Candida Lima de Barros",
     "streetnumber": "537",
     "apartmentnumber": "",
     "state": "Mato Grosso do Sul",
     "city": "Campo Grande",
     "zipcode": "79041390"
-    }
+    },
+    "email": "nantesmalice@gmail.com"
 
 }
 
@@ -58,3 +59,13 @@ GET http://localhost:5125/users/6
 
 ###
 GET http://localhost:5125/users/
+
+###
+POST  http://localhost:5125/splits/
+Content-Type: application/json
+
+{
+    "bottleid": 2,
+    "volume": 5,
+    "userid": 12
+}

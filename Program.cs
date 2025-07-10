@@ -7,6 +7,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<PerfumeServices>();
 builder.Services.AddScoped<BottleServices>();
 builder.Services.AddScoped<UserServices>();
+builder.Services.AddScoped<SplitServices>();
 builder.Services.AddScoped<UserRequestValidator>();
 
 var app = builder.Build();
@@ -104,6 +105,12 @@ app.MapGet("/users/", async (UserServices userServices) =>
         return Results.NotFound("No user was found. ");
 
     return Results.Ok(users);
+});
+
+app.MapPost("/splits/", async (SplitServices splitservices, SplitRequest request) =>
+{
+    var split = await splitservices.CreateSplit(request);
+    return Results.Ok(split);
 });
 
 app.Run();
