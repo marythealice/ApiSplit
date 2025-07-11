@@ -21,4 +21,23 @@ public class Bottle
         Type = type;
         PerfumeId = perfumeId;
     }
+
+    public uint GetBottleVolume()
+    {
+        return Volume;
+    }
+
+    public uint AddToVolume(uint volume)
+    {
+        Volume += volume;
+        return Volume;
+    }
+
+    public uint SubtractFromVolume(uint volume)
+    {
+        Volume -= volume;
+        return Volume;
+    }
+
+
 }
