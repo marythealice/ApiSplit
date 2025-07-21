@@ -1,3 +1,4 @@
+
 public enum SplitStatus
 {
     Unpaid = 1,
@@ -5,35 +6,62 @@ public enum SplitStatus
     Canceled
 };
 
-public enum Volume
+public enum SplitType
 {
+    APC = 0,
     Three = 3,
     Five = 5,
     Ten = 10,
     Fifteen = 15
+
 };
+
 
 public class Split
 {
     public uint Id { get; private set; }
+    public decimal Price { get; set; }
     public DateTime OrderDate { get; private set; }
     public uint BottleId { get; private set; }
     public Bottle Bottle { get; private set; }
-    public Volume Volume { get; private set; }
+    public decimal Volume { get; private set; }
     public SplitStatus Status { get; private set; }
+    public SplitType Type { get; private set; }
     public DateTime? PayDate { get; private set; }
     public uint UserId { get; private set; }
 
-
-    public Split(uint bottleId, Volume volume, uint userId)
+    private Split() { }
+    public Split(uint bottleId, decimal volume, uint userId, SplitType splitType)
     {
         OrderDate = DateTime.UtcNow;
         BottleId = bottleId;
         Volume = volume;
         Status = SplitStatus.Unpaid;
         UserId = userId;
+        Price = volume * Bottle.PricePerMl;
+        Type = splitType;
 
     }
+
+    public decimal ChangeVolume(decimal volume)
+    {
+        Volume = volume;
+        return volume;
+
+    }
+
+
+    public bool IsTFB()
+    {
+        if (Type == SplitType.APC)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
 
     public bool Pay()
     {
@@ -59,8 +87,5 @@ public class Split
         return false;
     }
 
-    public void ChangeVolume(Volume volume)
-    {
-        Volume = volume;
-    }
+
 }

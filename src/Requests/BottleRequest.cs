@@ -1,6 +1,6 @@
 public class BottleRequest
 {
-    public required uint Volume { get; set; }
+    public required decimal Volume { get; set; }
 
     public required decimal PricePerMl { get; set; }
 

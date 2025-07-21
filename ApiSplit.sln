@@ -1,37 +1,24 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSplit", "ApiSplit.csproj", "{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSplit", "src\ApiSplit.csproj", "{F40BB31B-BFC1-37ED-9D57-B260CDC3952A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|x64.Build.0 = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Debug|x86.Build.0 = Debug|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|x64.ActiveCfg = Release|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|x64.Build.0 = Release|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|x86.ActiveCfg = Release|Any CPU
-		{8B9243F8-CAED-6348-678D-A8C49A7AFA7E}.Release|x86.Build.0 = Release|Any CPU
+		{F40BB31B-BFC1-37ED-9D57-B260CDC3952A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40BB31B-BFC1-37ED-9D57-B260CDC3952A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40BB31B-BFC1-37ED-9D57-B260CDC3952A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40BB31B-BFC1-37ED-9D57-B260CDC3952A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D207C369-3EB7-4922-ACE8-84799FDAAF03}
+		SolutionGuid = {20A1890F-8754-4F23-A035-A1C73C2F018B}
 	EndGlobalSection
 EndGlobal

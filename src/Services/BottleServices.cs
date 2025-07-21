@@ -16,7 +16,7 @@ public class BottleServices
         return bottle;
     }
 
-    public async Task<Bottle?> BottleExists(uint id)
+    public async Task<Bottle?> GetBottle(uint id)
     {
         return await _db.Bottles
         .Include(b => b.Perfume)
@@ -27,6 +27,9 @@ public class BottleServices
     {
         return await _db.Bottles.ToListAsync();
     }
+
+
+
 
 
 

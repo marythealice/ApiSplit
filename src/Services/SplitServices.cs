@@ -9,9 +9,9 @@ public class SplitServices
 
     public async Task<Split> CreateSplit(SplitRequest request)
     {
-        var volume = (Volume)request.Volume;
+        var volume = request.Volume;
+        var split = new Split(request.BottleId, volume, request.UserId, request.Type);
 
-        var split = new Split(request.BottleId, volume, request.UserId);
         _db.Splits.Add(split);
         await _db.SaveChangesAsync();
         return split;

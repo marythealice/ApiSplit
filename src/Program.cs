@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDb>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("perfume_db")));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -63,7 +62,7 @@ app.MapPost("/bottles", async (BottleRequest request, PerfumeServices perfumeSer
 
 app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
 {
-    var bottle = await bottleServices.BottleExists(id);
+    var bottle = await bottleServices.GetBottle(id);
     if (bottle is null)
         return Results.NotFound();
 
@@ -107,10 +106,20 @@ app.MapGet("/users/", async (UserServices userServices) =>
     return Results.Ok(users);
 });
 
-app.MapPost("/splits/", async (SplitServices splitservices, SplitRequest request) =>
+app.MapPost("/splits/", async (BottleServices bottleServices, SplitServices splitservices, SplitRequest request) =>
 {
-    var split = await splitservices.CreateSplit(request);
-    return Results.Ok(split);
+    var bottle = await bottleServices.GetBottle(request.BottleId);
+    if (bottle is null)
+        return Results.NotFound("Bottle was not found");
+
+    if (request.Volume <= bottle.CurrentVolume)
+    {
+        var split = await splitservices.CreateSplit(request);
+        return Results.Ok(split);
+    }
+
+    return Results.UnprocessableEntity($"The split volume is greater than the bottle volume ({bottle.CurrentVolume})");
+
 });
 
 app.Run();
