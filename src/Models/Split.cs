@@ -21,6 +21,7 @@ public class Split
 {
     public uint Id { get; private set; }
     public decimal Price { get; set; }
+    public decimal PricePerMl { get; set; }
     public DateTime OrderDate { get; private set; }
     public uint BottleId { get; private set; }
     public Bottle Bottle { get; private set; }
@@ -31,14 +32,15 @@ public class Split
     public uint UserId { get; private set; }
 
     private Split() { }
-    public Split(uint bottleId, decimal volume, uint userId, SplitType splitType)
+    public Split(uint bottleId, decimal volume, uint userId, decimal pricePerMl ,SplitType splitType)
     {
         OrderDate = DateTime.UtcNow;
         BottleId = bottleId;
         Volume = volume;
         Status = SplitStatus.Unpaid;
         UserId = userId;
-        Price = volume * Bottle.PricePerMl;
+        PricePerMl = pricePerMl;
+        Price = volume * pricePerMl;
         Type = splitType;
 
     }
@@ -53,13 +55,7 @@ public class Split
 
     public bool IsTFB()
     {
-        if (Type == SplitType.APC)
-        {
-            return true;
-        }
-
-        return false;
-
+        return Type == SplitType.APC;
     }
 
 

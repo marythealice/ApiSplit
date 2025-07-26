@@ -10,7 +10,7 @@ public class BottleServices
     }
     public async Task<Bottle> CreateBottle(BottleRequest request)
     {
-        var bottle = new Bottle(request.Volume, request.PricePerMl, request.Type, request.PerfumeId);
+        var bottle = new Bottle(request.Volume, request.PricePerMl, request.PerfumeId);
         _db.Bottles.Add(bottle);
         await _db.SaveChangesAsync();
         return bottle;

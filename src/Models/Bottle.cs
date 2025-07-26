@@ -6,9 +6,6 @@ public class Bottle
     public decimal PricePerMl { get; private set; }
 
     public string? Status { get; private set; }
-
-    public string? Type { get; private set; }
-
     public uint PerfumeId { get; private set; }
 
     public Perfume Perfume { get; private set; }
@@ -19,25 +16,25 @@ public class Bottle
 
     private Bottle() { }
 
-    public Bottle(decimal volume, decimal pricePerMl, string type, uint perfumeId)
+    public Bottle(decimal volume, decimal pricePerMl, uint perfumeId)
     {
+        
         InitialVolume = volume;
         PricePerMl = pricePerMl;
         Status = "Open";
-        Type = type;
         PerfumeId = perfumeId;
         Splits = new List<Split>();
 
     }
 
-    public bool AddSplitToBottle(Split split)
+    public bool AddSplit(Split split)
     {
         if (split.Volume >= CurrentVolume)
         {
             return false;
         }
 
-        Splits.Append(split);
+        Splits.Add(split);
         return true;
     }
 }
