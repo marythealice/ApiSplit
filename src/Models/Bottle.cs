@@ -37,4 +37,14 @@ public class Bottle
         Splits.Add(split);
         return true;
     }
+    
+    public bool ChangeSplitVolume(uint id, decimal newVolume)
+    {
+        var split = Splits.Find(s => s.Id == id);
+        if (split == null) return false;
+
+        var volumeAvailable = CurrentVolume + split.Volume;
+        
+        return newVolume <= volumeAvailable && split.ChangeVolume(newVolume);
+    }
 }

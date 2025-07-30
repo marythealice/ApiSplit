@@ -45,11 +45,10 @@ public class Split
 
     }
 
-    public decimal ChangeVolume(decimal volume)
+    public bool ChangeVolume(decimal volume)
     {
         Volume = volume;
-        return volume;
-
+        return true;
     }
 
 

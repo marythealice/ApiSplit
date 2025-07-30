@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDb>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("perfume_db")));
@@ -8,8 +9,20 @@ builder.Services.AddScoped<BottleServices>();
 builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<SplitServices>();
 builder.Services.AddScoped<UserRequestValidator>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/openapi/{documentName}.json";
+    });
+    app.MapScalarApiReference();
+}
+
 
 app.MapPost("/perfumes", async (PerfumeServices perfumeServices, PerfumeRequest request) =>
 {
