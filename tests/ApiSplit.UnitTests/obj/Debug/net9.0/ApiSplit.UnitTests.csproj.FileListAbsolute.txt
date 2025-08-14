@@ -124,3 +124,8 @@ C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\obj\Debug\net9.0\refint\ApiSpli
 C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\obj\Debug\net9.0\ApiSplit.UnitTests.pdb
 C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\obj\Debug\net9.0\ApiSplit.UnitTests.genruntimeconfig.cache
 C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\obj\Debug\net9.0\ref\ApiSplit.UnitTests.dll
+C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\bin\Debug\net9.0\Scalar.AspNetCore.dll
+C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\malic\ApiSplit\tests\ApiSplit.UnitTests\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

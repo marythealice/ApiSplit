@@ -1,4 +1,5 @@
 
+namespace ApiSplit.Models;
 public enum SplitStatus
 {
     Unpaid = 1,

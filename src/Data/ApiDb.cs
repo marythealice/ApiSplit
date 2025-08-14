@@ -1,3 +1,4 @@
+using ApiSplit.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class ApiDb : DbContext

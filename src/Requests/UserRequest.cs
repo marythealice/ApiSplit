@@ -1,5 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
+namespace ApiSplit.Requests;
 public class UserRequest
 {
     public required string Name { get; set; }

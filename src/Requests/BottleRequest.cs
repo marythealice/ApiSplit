@@ -1,3 +1,4 @@
+namespace ApiSplit.Requests;
 public class BottleRequest
 {
     public required decimal Volume { get; set; }

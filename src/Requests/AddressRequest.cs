@@ -1,3 +1,4 @@
+namespace ApiSplit.Requests;
 public class AddressRequest
 {
     public string RecipientName { get; set; }

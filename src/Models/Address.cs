@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
+namespace ApiSplit.Models;
+
 [Owned]
 public class Address
 {

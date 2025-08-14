@@ -1,3 +1,4 @@
+namespace ApiSplit.Models;
 public class Perfume
 {
     public uint Id { get; private set; }
