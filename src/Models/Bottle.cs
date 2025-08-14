@@ -1,3 +1,5 @@
+using ApiSplit.Models;
+
 public class Bottle
 {
     public uint Id { get; private set; }

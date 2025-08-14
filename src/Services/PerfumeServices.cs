@@ -1,5 +1,6 @@
+using ApiSplit.Models;
 using Microsoft.EntityFrameworkCore;
-
+namespace ApiSplit.Services;
 public class PerfumeServices
 {
     private readonly ApiDb _db;

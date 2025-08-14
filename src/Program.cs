@@ -1,12 +1,17 @@
+using ApiSplit.Requests;
+using ApiSplit.Services;
+using ApiSplit.Validators;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDb>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("perfume_db")));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<PerfumeServices>();
 builder.Services.AddScoped<BottleServices>();
-builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<SplitServices>();
 builder.Services.AddScoped<UserRequestValidator>();
 builder.Services.AddEndpointsApiExplorer();
@@ -91,7 +96,7 @@ app.MapGet("/bottles/", async (BottleServices bottleServices) =>
     return Results.Ok(bottles);
 });
 
-app.MapPost("/users", async (UserServices userServices, UserRequest request, UserRequestValidator userReqValidator) =>
+app.MapPost("/users", async (UserServices userServices, UserRequestValidator userReqValidator, UserRequest request) =>
 {
     var result = userReqValidator.Validate(request);
     if (!result.IsValid)

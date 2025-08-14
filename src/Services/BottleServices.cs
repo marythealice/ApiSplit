@@ -1,4 +1,7 @@
+using ApiSplit.Requests;
 using Microsoft.EntityFrameworkCore;
+
+namespace ApiSplit.Services;
 
 public class BottleServices
 {

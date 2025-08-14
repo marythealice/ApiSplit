@@ -1,3 +1,7 @@
+using ApiSplit.Models;
+using ApiSplit.Requests;
+
+namespace ApiSplit.Services;
 public class SplitServices
 {
     private readonly ApiDb _db;

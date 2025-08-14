@@ -1,3 +1,7 @@
+using ApiSplit.Models;
+
+namespace ApiSplit.Requests;
+
 public class SplitRequest
 {
     public required uint BottleId { get; set; }

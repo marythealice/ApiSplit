@@ -1,3 +1,4 @@
+namespace ApiSplit.Requests;
 public class PerfumeRequest
 {
     public required string Name { get; set; }

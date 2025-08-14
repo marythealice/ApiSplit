@@ -1,4 +1,7 @@
+using ApiSplit.Requests;
 using FluentValidation;
+
+namespace ApiSplit.Validators;
 
 public class UserRequestValidator : AbstractValidator<UserRequest>
 {

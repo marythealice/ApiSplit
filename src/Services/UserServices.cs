@@ -1,4 +1,8 @@
+using ApiSplit.Models;
+using ApiSplit.Requests;
 using Microsoft.EntityFrameworkCore;
+
+namespace ApiSplit.Services;
 public class UserServices
 {
     private readonly ApiDb _db;
