@@ -16,7 +16,7 @@ public class ApiDb : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<User>()
-        .HasIndex(u => u.Email)
+        .HasIndex(u => u.Document)
         .IsUnique();
     }
 }

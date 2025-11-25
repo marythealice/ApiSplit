@@ -15,7 +15,7 @@ public class UserServices
     public async Task<User> CreateUser(UserRequest request)
     {
         var addressReq = request.Address;
-        Address address = new Address(
+        var address = new Address(
         addressReq.RecipientName,
         addressReq.StreetName,
         addressReq.StreetNumber,
@@ -23,7 +23,7 @@ public class UserServices
         addressReq.State,
         addressReq.City,
         addressReq.ZipCode);
-        var user = new User(request.Name, address, request.Email);
+        var user = new User(request.Name, address, request.Document);
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
         return user;

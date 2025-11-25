@@ -23,26 +23,6 @@ public class BottleTests
         Assert.NotNull(bottle.Splits);
     }
 
-    // [Fact]
-
-    // public void Given_Enough_Volume_In_Bottle_Change_Split_Volume()
-    // {
-    //     // Arrange
-    //
-    //     var bottle = new Bottle(100m, 17.5m,1);
-    //     var split = new Split(1, 5m, 1, 17.50m, SplitType.Five);
-    //     bottle.AddSplit(split);
-    //     
-    //     // Act
-    //     
-    //    var wasSplitVolumeChanged =  bottle.ChangeSplitVolume(1,10);
-    //     
-    //     // Assert
-    //     
-    //     Assert.True(wasSplitVolumeChanged);
-        
-    // }
-
     [Fact]
 
     public void Given_Adding_Split_To_Bottle_Current_Volume_Changes()

@@ -26,7 +26,7 @@ public class UserTests
         {
             Name = "Maria Alice Nantes",
             Address = addressRequest,
-            Email = "nantesmalice@gmail.com"
+            Document = "06384538105"
         };
 
         // Act
@@ -62,7 +62,7 @@ public class UserTests
         {
             Name = "Maria Alice Nantes",
             Address = addressRequest,
-            Email = "testtest" // invalid email
+            Document = "0638453810" // invalid document length
         };
     
         // Act

@@ -1,4 +1,4 @@
-using ApiSplit.Models;
+namespace ApiSplit.Models;
 
 public class Bottle
 {

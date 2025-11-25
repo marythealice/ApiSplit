@@ -1,16 +1,12 @@
+using ApiSplit.Models;
 using ApiSplit.Requests;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiSplit.Services;
 
-public class BottleServices
+public class BottleServices(ApiDb db)
 {
-    private readonly ApiDb _db;
-
-    public BottleServices(ApiDb db)
-    {
-        _db = db;
-    }
+    private readonly ApiDb _db = db;
     public async Task<Bottle> CreateBottle(BottleRequest request)
     {
         var bottle = new Bottle(request.Volume, request.PricePerMl, request.PerfumeId);
