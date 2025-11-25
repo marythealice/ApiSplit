@@ -1,37 +1,20 @@
 using ApiSplit.Models;
+using ApiSplit.Repository;
+using ApiSplit.Requests;
+using ApiSplit.Validators;
 using Microsoft.EntityFrameworkCore;
 namespace ApiSplit.Services;
-public class PerfumeServices
+public class PerfumeServices(PerfumeRepository perfumeRepository, PerfumeRequestValidator validator)
 {
-    private readonly ApiDb _db;
+    private readonly PerfumeRepository _perfumeRepository = perfumeRepository;
+    private readonly PerfumeRequestValidator _requestValidator = new PerfumeRequestValidator();
 
-    public PerfumeServices(ApiDb db)
+    public async Task<Perfume?> CreatePerfumeAsync(PerfumeRequest request)
     {
-        _db = db;
-    }
-
-    public async Task<Perfume> CreatePerfume(string name, uint volume)
-    {
-        var perfume = new Perfume(name, volume);
-        _db.Perfumes.Add(perfume);
-        await _db.SaveChangesAsync();
+        var result = await validator.ValidateAsync(request);
+        if (!result.IsValid)
+            return null;
+        var perfume = await _perfumeRepository.CreatePerfume(request);
         return perfume;
-    }
-
-    public async Task<Perfume?> GetPerfume(uint id)
-    {
-        return await _db.Perfumes.FindAsync(id);
-    }
-
-    public async Task<List<Perfume>> GetAllPerfumes()
-    {
-        return await _db.Perfumes.ToListAsync();
-    }
-
-    public async Task<int> RemovePerfume(Perfume perfume)
-    {
-        _db.Perfumes.Remove(perfume);
-        return await _db.SaveChangesAsync();
-
     }
 }

@@ -9,7 +9,7 @@ public enum SplitStatus
 
 public enum SplitType
 {
-    APC = 0,
+    Apc = 0,
     Three = 3,
     Five = 5,
     Ten = 10,
@@ -53,34 +53,28 @@ public class Split
     }
 
 
-    public bool IsTFB()
+    public bool IsTFfb()
     {
-        return Type == SplitType.APC;
+        return Type == SplitType.Apc;
     }
 
 
     public bool Pay()
     {
-        if (Status == SplitStatus.Unpaid)
-        {
-            Status = SplitStatus.Paid;
-            PayDate = DateTime.UtcNow;
-            return true;
-        }
+        if (Status != SplitStatus.Unpaid) return false;
+        Status = SplitStatus.Paid;
+        PayDate = DateTime.UtcNow;
+        return true;
 
-        return false;
     }
 
     public bool Cancel()
     {
-        if (Status == SplitStatus.Unpaid)
-        {
-            Status = SplitStatus.Canceled;
+        if (Status != SplitStatus.Unpaid) return false;
+        Status = SplitStatus.Canceled;
 
-            return true;
-        }
+        return true;
 
-        return false;
     }
 
 

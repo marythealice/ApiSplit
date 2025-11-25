@@ -1,3 +1,4 @@
+using ApiSplit.Repository;
 using ApiSplit.Requests;
 using ApiSplit.Services;
 using ApiSplit.Validators;
@@ -34,66 +35,49 @@ app.MapPost("/perfumes", async (PerfumeServices perfumeServices, PerfumeRequest 
     if (string.IsNullOrEmpty(request.Name))
         return Results.BadRequest("Name cannot be empty");
 
-    var perfume = await perfumeServices.CreatePerfume(request.Name, request.Volume);
-
-    return Results.Created($"/perfumes/{perfume.Id}", perfume);
+    var perfume = await perfumeServices.CreatePerfumeAsync(request);
+    return perfume == null ? Results.BadRequest(perfume) : Results.Created($"/perfumes/{perfume.Id}", perfume);
 });
 
-app.MapGet("/perfumes/{id}", async (uint id, PerfumeServices perfumeServices) =>
+app.MapGet("/perfumes/{id}", async (uint id, PerfumeRepository perfumeRepository) =>
 {
-    var perfume = await perfumeServices.GetPerfume(id);
+    var perfume = await perfumeRepository.GetPerfume(id);
+    return perfume is null ? Results.NotFound("Perfume was not found") : Results.Ok(perfume);
+});
+
+
+app.MapGet("/perfumes/", async (PerfumeRepository perfumeRepository) =>
+{
+    var perfumes = await perfumeRepository.GetAllPerfumes();
+    return perfumes.Count == 0 ? Results.NotFound("There are no perfumes available") : Results.Ok(perfumes);
+});
+
+app.MapDelete("/perfumes/{id}", async (PerfumeRepository perfumeRepository, uint id) =>
+{
+    var perfumeWasRemoved = await perfumeRepository.RemovePerfume(id);
+    return perfumeWasRemoved == 0 ? Results.NotFound("Perfume was not found") : Results.Ok(perfumeWasRemoved);
+});
+
+app.MapPost("/bottles", async (BottleRequest request, PerfumeRepository perfumeRepository, BottleServices bottleServices) =>
+{
+    var perfume = await perfumeRepository.GetPerfume(request.PerfumeId);
     if (perfume is null)
         return Results.NotFound("Perfume was not found");
-
-    return Results.Ok(perfume);
-});
-
-
-app.MapGet("/perfumes/", async (PerfumeServices perfumeServices) =>
-{
-    var perfumes = await perfumeServices.GetAllPerfumes();
-    if (perfumes is null)
-        return Results.NotFound("There are no perfumes available");
-
-    return Results.Ok(perfumes);
-});
-
-app.MapDelete("/perfumes/{id}", async (PerfumeServices perfumeServices, uint id) =>
-{
-    var perfume = await perfumeServices.GetPerfume(id);
-    if (perfume is null)
-        return Results.NotFound("Perfume was not found");
-
-    await perfumeServices.RemovePerfume(perfume);
-    return Results.Ok(perfume);
-});
-
-app.MapPost("/bottles", async (BottleRequest request, PerfumeServices perfumeServices, BottleServices bottleServices) =>
-{
-    var perfume = await perfumeServices.GetPerfume(request.PerfumeId);
-    if (perfume is null)
-        return Results.NotFound();
 
     var bottle = await bottleServices.CreateBottle(request);
     return Results.Ok(bottle);
 });
 
-app.MapGet("/bottles/{id}", async (uint id, BottleServices bottleServices) =>
+app.MapGet("/bottles/{id}", async (uint id, BottleRepository bottleRepository) =>
 {
-    var bottle = await bottleServices.GetBottle(id);
-    if (bottle is null)
-        return Results.NotFound();
-
-    return Results.Ok(bottle);
+    var bottle = await bottleRepository.GetBottle(id);
+    return bottle is null ? Results.NotFound("Bottle was not found.") : Results.Ok(bottle);
 });
 
-app.MapGet("/bottles/", async (BottleServices bottleServices) =>
+app.MapGet("/bottles/", async (BottleRepository bottleRepository) =>
 {
-    var bottles = await bottleServices.GetAllBottles();
-    if (bottles is null)
-        return Results.NotFound("There are no bottles available");
-
-    return Results.Ok(bottles);
+    var bottles = await bottleRepository.GetAllBottles();
+    return bottles.Count == 0 ? Results.NotFound("There are no bottles available") : Results.Ok(bottles);
 });
 
 app.MapPost("/users", async (UserServices userServices, UserRequestValidator userReqValidator, UserRequest request) =>
@@ -118,25 +102,22 @@ app.MapGet("/users/{id}", async (UserServices userServices, uint id) =>
 app.MapGet("/users/", async (UserServices userServices) =>
 {
     var users = await userServices.GetAllUsers();
-    if (users is null)
-        return Results.NotFound("No user was found. ");
-
-    return Results.Ok(users);
+    return users.Count == 0 ? Results.NotFound("No user was found. ") : Results.Ok(users);
 });
 
-app.MapPost("/splits/", async (BottleServices bottleServices, SplitServices splitservices, SplitRequest request) =>
+app.MapPost("/splits/", async (BottleRepository bottleRepository, SplitServices splitServices, SplitRequest request) =>
 {
-    var bottle = await bottleServices.GetBottle(request.BottleId);
+    var bottle = await bottleRepository.GetBottle(request.BottleId);
     if (bottle is null)
         return Results.NotFound("Bottle was not found");
 
     if (request.Volume <= bottle.CurrentVolume)
     {
-        var split = await splitservices.CreateSplit(request);
+        var split = await splitServices.CreateSplit(request);
         return Results.Ok(split);
     }
 
-    return Results.UnprocessableEntity($"The split volume is greater than the bottle volume ({bottle.CurrentVolume})");
+    return Results.UnprocessableEntity("The split volume is greater than the bottle volume ({bottle.CurrentVolume})");
 
 });
 
@@ -144,3 +125,4 @@ app.Run();
 
 
 
+ 

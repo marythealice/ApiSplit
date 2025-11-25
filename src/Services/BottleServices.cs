@@ -1,39 +1,24 @@
 using ApiSplit.Models;
+using ApiSplit.Repository;
 using ApiSplit.Requests;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiSplit.Services;
 
-public class BottleServices(ApiDb db)
+public class BottleServices(BottleRepository bottleRepository, PerfumeRepository perfumeRepository)
 {
-    private readonly ApiDb _db = db;
-    public async Task<Bottle> CreateBottle(BottleRequest request)
+    private readonly BottleRepository _bottleRepository = bottleRepository;
+    private readonly PerfumeRepository _perfumeRepository = perfumeRepository;
+
+    public async Task<Bottle?> CreateBottle(BottleRequest request)
     {
-        var bottle = new Bottle(request.Volume, request.PricePerMl, request.PerfumeId);
-        _db.Bottles.Add(bottle);
-        await _db.SaveChangesAsync();
+        if (request.Volume < 0) return null;
+        if (request.PricePerMl < 0) return null;
+        
+        var perfume = await _perfumeRepository.GetPerfume(request.PerfumeId);
+        if (perfume == null) return null;
+        var bottle = await _bottleRepository.CreateBottle(request);
         return bottle;
     }
-
-    public async Task<Bottle?> GetBottle(uint id)
-    {
-        return await _db.Bottles
-        .Include(b => b.Perfume)
-        .FirstOrDefaultAsync(b => b.Id == id);
-    }
-
-    public async Task<List<Bottle>> GetAllBottles()
-    {
-        return await _db.Bottles.ToListAsync();
-    }
-
-
-
-
-
-
-
-
-
 
 }
