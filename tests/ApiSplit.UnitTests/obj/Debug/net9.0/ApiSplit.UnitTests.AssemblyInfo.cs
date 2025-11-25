@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiSplit.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce93ac5051250a9afe0b6a44090d93fd3f9454ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fddf8f0597cb22294e80c21df5d457117f35228c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiSplit.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiSplit.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
